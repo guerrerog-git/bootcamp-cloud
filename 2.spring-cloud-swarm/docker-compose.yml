@@ -1,0 +1,34 @@
+version: '3'
+services:
+  eureka:
+    image: tecgurus/eureka-server-test-0
+    networks:
+      - springcloud-overlay
+    ports:
+      - 8761:8761
+
+  exchange:
+    image: tecgurus/exchange-service-test-0
+    networks:
+      - springcloud-overlay
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://eureka:8761/eureka
+    depends_on:
+      - eureka
+    ports:
+      - 8000:8000
+      
+  conversion:
+    image: tecgurus/conversion-service-test-0
+    networks:
+      - springcloud-overlay
+    environment:
+      - EUREKA_SERVER_ADDRESS=http://eureka:8761/eureka
+    depends_on:
+      - eureka
+    ports:
+      - 8100:8100
+networks:
+  springcloud-overlay:
+    external:
+      name: springcloud-overlay
