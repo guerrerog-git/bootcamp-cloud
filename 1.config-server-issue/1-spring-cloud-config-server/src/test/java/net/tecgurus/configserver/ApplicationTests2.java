@@ -8,8 +8,8 @@ import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("scc")
-class ApplicationTests {
+@ActiveProfiles("csc")
+class ApplicationTests2 {
 
 	@LocalServerPort
 	private int randomServerPort;
